@@ -49,6 +49,27 @@ app.get("/get-data",async (req,res)=>{
        })
     }
 })
+
+app.post("/userwise",async (req,res)=>{
+    const {id} = req.body
+    try{
+        let users = await userModel.findById(id)
+        res.status(200).json({
+             "status" : 200,
+             "success" : true,
+             "message" : "data has been shown",
+             "data" : users
+        })
+    }
+    catch(error) {
+        res.status(500).json({
+            "status" : 500,
+            "success" :false,
+            "message" : error.message,
+            "data" : null
+       })
+    }
+})
 app.listen(4000)
 
 
