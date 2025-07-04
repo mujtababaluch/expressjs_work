@@ -1,0 +1,49 @@
+Understanding the Two Servers: Application Server & Database Server
+
+Application Server (Express.js)
+	This is the main backend application that we write using Node.js and Express.js.
+
+It handles:
+	API routes like /add-user, /get-users
+	Business logic (e.g., validations)
+	Communicating with the database
+
+Database Server (MongoDB)
+	This is the actual storage system — where data is saved and retrieved.
+
+It’s running in the background as a separate server and needs to be connected to the application server.
+
+
+					****--------------------------------------****
+
+What is Mongoose and Why We Use It?
+
+Mongoose is a ODM used in Node.js which Helps us connect to MongoDB easily
+
+
+What is ODM (Object Data Modeling)?
+	ODM means a way to connect your JavaScript objects with your MongoDB database in a clean and structured way
+
+ODM is like ORM, but for MongoDB (NoSQL databases)
+
+Just like ORM (Object Relational Mapping) maps tables to objects (like in SQL),
+ODM maps MongoDB collections to JavaScript objects.
+
+Example:
+
+Think of Mongoose like a translator between your application and MongoDB.
+You work in JavaScript, but MongoDB stores data in BSON (binary JSON).
+Mongoose translates it smoothly.
+
+							****--------------------------------------****
+
+What is a MongoDB ObjectId?
+	An ObjectId is a 12-byte (24-character hexadecimal) unique identifier that MongoDB uses by default as the _id of a document.
+
+Part			Hex Value	Meaning
+Timestamp		686769cc	Creation time (in seconds)
+Machine ID		a054c1		Unique identifier for host
+Process ID (PID)	866b		ID of MongoDB process
+Counter			4d1ead		Auto-incremented counter
+
+							****--------------------------------------****
