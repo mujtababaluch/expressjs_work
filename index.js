@@ -50,26 +50,44 @@ app.get("/get-data",async (req,res)=>{
     }
 })
 
-app.post("/userwise",async (req,res)=>{
-    const {id} = req.body
-    try{
-        let users = await userModel.findById(id)
-        res.status(200).json({
-             "status" : 200,
-             "success" : true,
-             "message" : "data has been shown",
-             "data" : users
+
+app.get("/getuser/:id",async (req,res)=>{
+    const {id} =  req.params
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            res.status(400).json({
+                "statuscode":400,
+                "success":false,
+                "message": "invaild object type",
+                "data" : null
+            })
+        }
+    try {
+        let userdata = await usermodel.findById(id)
+        if(!userdata){
+            res.status(404).json({
+                "statuscode":404,
+                "success":false,
+                "message": "user not found",
+                "data" : null
+            })
+        }
+        res.json({
+            "statuscode":200,
+            "success":true,
+            "message": "data is feteched",
+            "data" : userdata
+        })
+    } catch (error) {
+        res.status(500).json({
+            "statuscode":500,
+            "success":false,
+            "message": error.message,
+            "data" : null
         })
     }
-    catch(error) {
-        res.status(500).json({
-            "status" : 500,
-            "success" :false,
-            "message" : error.message,
-            "data" : null
-       })
-    }
+
 })
+
 app.listen(4000)
 
 
